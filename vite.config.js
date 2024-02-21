@@ -21,7 +21,9 @@ export default defineConfig({
         },
         globals: {
           treeselectjs: 'Treeselect'
-        }
+        },
+        format: 'umd', // Specify UMD format here
+        name: 'Treeselect', // Name of the global variable for your library
       }
     }
   },

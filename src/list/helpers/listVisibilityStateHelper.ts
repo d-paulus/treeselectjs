@@ -45,26 +45,32 @@ export const updateVisibleBySearchFlattedOptions = (flattedOptions: FlattedOptio
 }
 
 const getSearchedFlattedOptions = (flattedOptions: FlattedOptionType[], searchText: string) => {
+  const searchWords = searchText.toLowerCase().split(/\s+/); // Split search text into words
+
   return flattedOptions.reduce((acc, curr) => {
-    const isSearched = curr.name.toLowerCase().includes(searchText.toLowerCase())
+    const optionWords = curr.name.toLowerCase().split(/\s+/); // Split current option name into words
+    const isSearched = searchWords.every(searchWord => 
+      optionWords.includes(searchWord)
+    ); // Check if every search word is included in the option's words
 
     if (isSearched) {
-      acc.push(curr)
+      acc.push(curr);
 
       if (curr.isGroup) {
-        const flattedChildren = getAllNestedChildren(curr.id, flattedOptions)
-        acc.push(...flattedChildren)
+        const flattedChildren = getAllNestedChildren(curr.id, flattedOptions);
+        acc.push(...flattedChildren);
       }
 
       if (curr.childOf) {
-        const flattedParents = getAllNestedParents(curr.childOf, flattedOptions)
-        acc.push(...flattedParents)
+        const flattedParents = getAllNestedParents(curr.childOf, flattedOptions);
+        acc.push(...flattedParents);
       }
     }
 
-    return acc
-  }, [] as FlattedOptionType[])
+    return acc;
+  }, [] as FlattedOptionType[]);
 }
+
 
 const getAllNestedChildren = (childOf: ValueOptionType, flattedOption: FlattedOptionType[]) => {
   return flattedOption.reduce((acc, curr) => {
