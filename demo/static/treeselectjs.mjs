@@ -42,9 +42,9 @@ class di {
     isAlwaysOpened: a,
     searchable: h,
     placeholder: d,
-    disabled: C,
+    disabled: b,
     isSingleSelect: f,
-    id: b,
+    id: C,
     ariaLabel: g,
     iconElements: k,
     inputCallback: w,
@@ -112,7 +112,7 @@ class di {
     c(this, "focusCallback");
     c(this, "blurCallback");
     c(this, "nameChangeCallback");
-    this.value = e, this.showTags = t, this.tagsCountText = s, this.searchable = h, this.placeholder = d, this.clearable = i, this.isAlwaysOpened = a, this.disabled = C, this.isSingleSelect = f, this.id = b, this.ariaLabel = g, this.iconElements = k, this.isOpened = !1, this.searchText = "", m(this, N, o(this, Ce, jt).call(this)), m(this, E, o(this, Le, Yt).call(this)), m(this, D, o(this, Se, Jt).call(this)), m(this, v, null), this.inputCallback = w, this.searchCallback = y, this.openCallback = x, this.closeCallback = R, this.keydownCallback = ae, this.focusCallback = Ct, this.blurCallback = gt, this.nameChangeCallback = oe, this.srcElement = o(this, fe, Ft).call(this, n(this, N), n(this, E), n(this, D)), o(this, ue, Ht).call(this);
+    this.value = e, this.showTags = t, this.tagsCountText = s, this.searchable = h, this.placeholder = d, this.clearable = i, this.isAlwaysOpened = a, this.disabled = b, this.isSingleSelect = f, this.id = C, this.ariaLabel = g, this.iconElements = k, this.isOpened = !1, this.searchText = "", m(this, N, o(this, Ce, jt).call(this)), m(this, E, o(this, Le, Yt).call(this)), m(this, D, o(this, Se, Jt).call(this)), m(this, v, null), this.inputCallback = w, this.searchCallback = y, this.openCallback = x, this.closeCallback = R, this.keydownCallback = ae, this.focusCallback = Ct, this.blurCallback = gt, this.nameChangeCallback = oe, this.srcElement = o(this, fe, Ft).call(this, n(this, N), n(this, E), n(this, D)), o(this, ue, Ht).call(this);
   }
   // Public methods
   focus() {
@@ -294,7 +294,7 @@ const ss = (l, e, t, s) => {
   return gi(i, t);
 }, os = (l, e, t, s) => l.reduce((i, a) => {
   var f;
-  const h = !!((f = a.children) != null && f.length), d = s >= e && h, C = s > e;
+  const h = !!((f = a.children) != null && f.length), d = s >= e && h, b = s > e;
   if (i.push({
     id: a.value,
     name: a.name,
@@ -304,11 +304,11 @@ const ss = (l, e, t, s) => {
     isPartialChecked: !1,
     level: s,
     isClosed: d,
-    hidden: C,
+    hidden: b,
     disabled: a.disabled ?? !1
   }), h) {
-    const b = os(a.children, e, a.value, s + 1);
-    i.push(...b);
+    const C = os(a.children, e, a.value, s + 1);
+    i.push(...C);
   }
   return i;
 }, []), ft = ({ id: l }, e) => e.filter((t) => t.childOf === l), Ci = (l) => {
@@ -341,7 +341,7 @@ const ss = (l, e, t, s) => {
   return l.reduce((s, i) => {
     const a = i.name.toLowerCase().split(/\s+/);
     if (t.every(
-      (d) => a.includes(d)
+      (d) => a.some((b) => b.includes(d))
     )) {
       if (s.push(i), i.isGroup) {
         const d = rs(i.id, l);
@@ -363,8 +363,8 @@ const ss = (l, e, t, s) => {
     }
   );
   e.length && console.error(`Validation: You have duplicated values: ${e.join(", ")}! You should use unique values.`);
-}, Li = (l, e, t, s, i, a, h, d, C, f) => {
-  ss(l, e, i, C), d && h && ki(e), ce(e, t, s, a, f);
+}, Li = (l, e, t, s, i, a, h, d, b, f) => {
+  ss(l, e, i, b), d && h && ki(e), ce(e, t, s, a, f);
 }, ce = (l, e, t, s, i) => {
   l.forEach((a) => {
     const h = e.querySelector(`[input-id="${a.id}"]`), d = T(h);
@@ -389,7 +389,7 @@ const ss = (l, e, t, s) => {
 }, Ni = (l, e, t, s) => {
   const i = l.level === 0, a = 20, h = 5;
   if (i) {
-    const d = t.some((b) => b.isGroup && b.level === l.level), C = !l.isGroup && d ? `${a}px` : `${h}px`, f = l.isGroup ? "0" : C;
+    const d = t.some((C) => C.isGroup && C.level === l.level), b = !l.isGroup && d ? `${a}px` : `${h}px`, f = l.isGroup ? "0" : b;
     s ? e.style.paddingRight = f : e.style.paddingLeft = f;
   } else {
     const d = l.isGroup ? `${l.level * a}px` : `${l.level * a + a}px`;
@@ -415,9 +415,9 @@ class Bi {
     emptyText: a,
     isSingleSelect: h,
     iconElements: d,
-    showCount: C,
+    showCount: b,
     disabledBranchNode: f,
-    expandSelected: b,
+    expandSelected: C,
     isIndependentNodes: g,
     rtl: k,
     inputCallback: w,
@@ -480,7 +480,7 @@ class Bi {
     r(this, P, !0);
     r(this, S, []);
     r(this, Y, !0);
-    this.options = e, this.value = t, this.openLevel = s ?? 0, this.listSlotHtmlComponent = i ?? null, this.emptyText = a ?? "No results found...", this.isSingleSelect = h ?? !1, this.showCount = C ?? !1, this.disabledBranchNode = f ?? !1, this.expandSelected = b ?? !1, this.isIndependentNodes = g ?? !1, this.rtl = k ?? !1, this.iconElements = d, this.searchText = "", this.flattedOptions = bi(this.options, this.openLevel, this.isIndependentNodes), this.flattedOptionsBeforeSearch = this.flattedOptions, this.selectedNodes = { nodes: [], groupedNodes: [], allNodes: [] }, this.srcElement = o(this, Pe, us).call(this), this.inputCallback = w, this.arrowClickCallback = y, this.mouseupCallback = x, vi(this.flattedOptions);
+    this.options = e, this.value = t, this.openLevel = s ?? 0, this.listSlotHtmlComponent = i ?? null, this.emptyText = a ?? "No results found...", this.isSingleSelect = h ?? !1, this.showCount = b ?? !1, this.disabledBranchNode = f ?? !1, this.expandSelected = C ?? !1, this.isIndependentNodes = g ?? !1, this.rtl = k ?? !1, this.iconElements = d, this.searchText = "", this.flattedOptions = bi(this.options, this.openLevel, this.isIndependentNodes), this.flattedOptionsBeforeSearch = this.flattedOptions, this.selectedNodes = { nodes: [], groupedNodes: [], allNodes: [] }, this.srcElement = o(this, Pe, us).call(this), this.inputCallback = w, this.arrowClickCallback = y, this.mouseupCallback = x, vi(this.flattedOptions);
   }
   // Public methods
   updateValue(e) {
@@ -544,14 +544,14 @@ M = new WeakMap(), P = new WeakMap(), S = new WeakMap(), Y = new WeakMap(), Oe =
         (x) => T(x).classList.contains("treeselect-list__item--focused")
       );
       T(s[a]).classList.remove("treeselect-list__item--focused");
-      const d = t === "ArrowDown" ? a + 1 : a - 1, C = t === "ArrowDown" ? 0 : s.length - 1, f = s[d] ?? s[C], b = !s[d], g = T(f);
+      const d = t === "ArrowDown" ? a + 1 : a - 1, b = t === "ArrowDown" ? 0 : s.length - 1, f = s[d] ?? s[b], C = !s[d], g = T(f);
       g.classList.add("treeselect-list__item--focused");
       const k = this.srcElement.getBoundingClientRect(), w = g.getBoundingClientRect();
-      if (b && t === "ArrowDown") {
+      if (C && t === "ArrowDown") {
         this.srcElement.scroll(0, 0);
         return;
       }
-      if (b && t === "ArrowUp") {
+      if (C && t === "ArrowUp") {
         this.srcElement.scroll(0, this.srcElement.scrollHeight);
         return;
       }
@@ -712,9 +712,9 @@ class Gi {
     appendToBody: a,
     alwaysOpen: h,
     showTags: d,
-    tagsCountText: C,
+    tagsCountText: b,
     clearable: f,
-    searchable: b,
+    searchable: C,
     placeholder: g,
     grouped: k,
     isGroupedValue: w,
@@ -828,7 +828,7 @@ class Gi {
       staticList: ae,
       appendToBody: a,
       isSingleSelect: oe
-    }), this.parentHtmlContainer = e, this.value = [], this.options = s ?? [], this.openLevel = i ?? 0, this.appendToBody = a ?? !1, this.alwaysOpen = !!(h && !x), this.showTags = d ?? !0, this.tagsCountText = C ?? "elements selected", this.clearable = f ?? !0, this.searchable = b ?? !0, this.placeholder = g ?? "Search...", this.grouped = k ?? !0, this.isGroupedValue = w ?? !1, this.listSlotHtmlComponent = y ?? null, this.disabled = x ?? !1, this.emptyText = R ?? "No results found...", this.staticList = !!(ae && !this.appendToBody), this.id = Ct ?? "", this.ariaLabel = gt ?? "", this.isSingleSelect = oe ?? !1, this.showCount = Ys ?? !1, this.disabledBranchNode = Ks ?? !1, this.direction = Xs ?? "auto", this.expandSelected = Js ?? !1, this.saveScrollPosition = Zs ?? !0, this.isIndependentNodes = Qs ?? !1, this.rtl = ei ?? !1, this.iconElements = Bt(ti), this.inputCallback = si, this.openCallback = ii, this.closeCallback = li, this.nameChangeCallback = ni, this.searchCallback = ai, this.openCloseGroupCallback = oi, this.ungroupedValue = [], this.groupedValue = [], this.allValue = [], this.isListOpened = !1, this.selectedName = "", this.srcElement = null, o(this, ee, St).call(this, t);
+    }), this.parentHtmlContainer = e, this.value = [], this.options = s ?? [], this.openLevel = i ?? 0, this.appendToBody = a ?? !1, this.alwaysOpen = !!(h && !x), this.showTags = d ?? !0, this.tagsCountText = b ?? "elements selected", this.clearable = f ?? !0, this.searchable = C ?? !0, this.placeholder = g ?? "Search...", this.grouped = k ?? !0, this.isGroupedValue = w ?? !1, this.listSlotHtmlComponent = y ?? null, this.disabled = x ?? !1, this.emptyText = R ?? "No results found...", this.staticList = !!(ae && !this.appendToBody), this.id = Ct ?? "", this.ariaLabel = gt ?? "", this.isSingleSelect = oe ?? !1, this.showCount = Ys ?? !1, this.disabledBranchNode = Ks ?? !1, this.direction = Xs ?? "auto", this.expandSelected = Js ?? !1, this.saveScrollPosition = Zs ?? !0, this.isIndependentNodes = Qs ?? !1, this.rtl = ei ?? !1, this.iconElements = Bt(ti), this.inputCallback = si, this.openCallback = ii, this.closeCallback = li, this.nameChangeCallback = ni, this.searchCallback = ai, this.openCloseGroupCallback = oi, this.ungroupedValue = [], this.groupedValue = [], this.allValue = [], this.isListOpened = !1, this.selectedName = "", this.srcElement = null, o(this, ee, St).call(this, t);
   }
   mount() {
     Dt({
@@ -875,8 +875,8 @@ class Gi {
       y: a,
       height: h,
       width: d
-    } = e.getBoundingClientRect(), C = window.innerHeight, f = a, b = C - a - h;
-    let g = f > b && f >= s && b < s;
+    } = e.getBoundingClientRect(), b = window.innerHeight, f = a, C = b - a - h;
+    let g = f > C && f >= s && C < s;
     if (this.direction !== "auto" && (g = this.direction === "top"), this.appendToBody) {
       (t.style.top !== "0px" || t.style.left !== "0px") && (t.style.top = "0px", t.style.left = "0px");
       const x = i + window.scrollX, R = g ? a + window.scrollY - s : a + window.scrollY + h;

@@ -49,9 +49,11 @@ const getSearchedFlattedOptions = (flattedOptions: FlattedOptionType[], searchTe
 
   return flattedOptions.reduce((acc, curr) => {
     const optionWords = curr.name.toLowerCase().split(/\s+/); // Split current option name into words
+
+    // Check if for every search word there is at least one option word that starts with or contains the search word
     const isSearched = searchWords.every(searchWord => 
-      optionWords.includes(searchWord)
-    ); // Check if every search word is included in the option's words
+      optionWords.some(optionWord => optionWord.includes(searchWord))
+    );
 
     if (isSearched) {
       acc.push(curr);
@@ -70,6 +72,7 @@ const getSearchedFlattedOptions = (flattedOptions: FlattedOptionType[], searchTe
     return acc;
   }, [] as FlattedOptionType[]);
 }
+
 
 
 const getAllNestedChildren = (childOf: ValueOptionType, flattedOption: FlattedOptionType[]) => {
